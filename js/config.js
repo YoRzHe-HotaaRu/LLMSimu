@@ -5,7 +5,7 @@ const CONFIG = {
     // ZenMux API Configuration
     api: {
         baseUrl: 'https://zenmux.ai/api/v1',
-        apiKey: 'sk-ai-v1-d1f4f3d61b222bed043e22bcc1cc71d75d55b40abf12abacfa23394702a29cbb',
+        apiKey: 'your-key',
         model: 'xiaomi/mimo-v2-flash',
         maxTokens: 1024,
         temperature: 0.7,
