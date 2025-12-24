@@ -1,0 +1,203 @@
+/* ========================================
+   View Tabs
+   ======================================== */
+.view-tabs {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.view-tab {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.view-tab svg {
+    width: 18px;
+    height: 18px;
+}
+
+.view-tab:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.view-tab.active {
+    background: rgba(0, 245, 255, 0.15);
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    box-shadow: var(--shadow-glow-cyan);
+}
+
+/* ========================================
+   View Content Switching
+   ======================================== */
+.view-content {
+    display: none;
+}
+
+.view-content.active {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* ========================================
+   Network Diagram View
+   ======================================== */
+.network-diagram {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    min-height: 500px;
+}
+
+.network-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#network-svg {
+    width: 100%;
+    height: 450px;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.03) 0%, transparent 70%);
+    border-radius: var(--radius-md);
+}
+
+/* Network Nodes */
+.network-node {
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.network-node:hover {
+    transform: scale(1.2);
+}
+
+.network-node.active {
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+.network-node.pulse {
+    animation: node-pulse 0.5s ease-out;
+}
+
+@keyframes node-pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+        filter: drop-shadow(0 0 15px var(--accent-cyan));
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Network Connections */
+.network-connection {
+    transition: stroke var(--transition-fast), stroke-width var(--transition-fast);
+}
+
+.network-connection.active {
+    stroke-width: 2;
+}
+
+/* Particles */
+.particle {
+    pointer-events: none;
+}
+
+/* Network Labels */
+.network-labels {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    height: 40px;
+}
+
+.network-label {
+    position: absolute;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+
+.network-label small {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* Network Status */
+.network-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+#network-status-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    min-width: 120px;
+}
+
+.network-progress {
+    flex: 1;
+    height: 6px;
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.network-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--gradient-primary);
+    border-radius: 3px;
+    transition: width var(--transition-normal);
+}
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+@media (max-width: 768px) {
+    .view-tabs {
+        flex-direction: column;
+    }
+
+    .view-tab {
+        justify-content: center;
+    }
+
+    #network-svg {
+        height: 350px;
+    }
+
+    .network-labels {
+        display: none;
+    }
+}
